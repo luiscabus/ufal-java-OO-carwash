@@ -7,6 +7,15 @@ public class PersonEmployee extends Person {
     private String id_ctrabalho;
 
 
+    public PersonEmployee() {
+        this(null,null,null);
+    }
+
+    public PersonEmployee(String name, String phone, String id_ctrabalho) {
+        super(name, phone);
+        this.id_ctrabalho = id_ctrabalho;
+    }
+
     @Override
     void receivesInput() {
         Scanner scan = new Scanner(System.in);

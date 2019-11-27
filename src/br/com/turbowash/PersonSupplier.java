@@ -7,6 +7,16 @@ public class PersonSupplier extends Person {
     private String id_cnpj;
 
 
+    public PersonSupplier() {
+        super();
+        this.id_cnpj = null;
+    }
+
+    public PersonSupplier(String name, String phone, String id_cnpj) {
+        super(name, phone);
+        this.id_cnpj = id_cnpj;
+    }
+
     @Override
     void receivesInput() {
         Scanner scan = new Scanner(System.in);

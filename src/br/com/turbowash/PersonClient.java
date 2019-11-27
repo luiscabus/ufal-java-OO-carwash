@@ -7,7 +7,16 @@ public class PersonClient extends Person {
     private String id_cpf;
 
 
-    public void makePurchase() {
+    public PersonClient() {
+        this(null, null, null);
+    }
+
+    public PersonClient(String name, String phone, String id_cpf) {
+        super(name, phone);
+        this.id_cpf = id_cpf;
+    }
+
+    public void makesPurchase() {
 
     }
 

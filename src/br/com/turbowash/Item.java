@@ -15,6 +15,12 @@ class Item implements Presentsitelf {
         this.stock = 0;
     }
 
+    public Item(String name, String price) {
+        this.name = name;
+        this.price = price;
+        this.stock = 0;
+    }
+
     public void insertItem() {
         Scanner scan = new Scanner(System.in);
 
@@ -27,27 +33,39 @@ class Item implements Presentsitelf {
         this.presentsItself();
     }
 
-     @Override
-     public void presentsItself() {
+    @Override
+    public void presentsItself() {
         System.out.println("ITEM \nNome: " + this.getName() +
                 ", \nPreço: " + this.getPrice());
-     }
+    }
 
+    @Override
+    public String toString() {
+        return "\n'" + name + '\'' +
+                ", '" + price + '\'' + "\n" ;
+    }
 
-     public String getName() {
+    public String getName() {
         return name;
-     }
+    }
 
-     public void setName(String name) {
-         this.name = name;
-     }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-     public String getPrice() {
-         return price;
-     }
+    public String getPrice() {
+        return price;
+    }
 
-     public void setPrice(String price) {
-         this.price = price;
-     }
+    public void setPrice(String price) {
+        this.price = price;
+    }
 
- }
+    public int getStock() {
+        return stock;
+    }
+
+    public void setStock(int stock) {
+        this.stock = stock;
+    }
+}

@@ -10,6 +10,10 @@ abstract class Person implements Presentsitelf {
         this.phone = null;
     }
 
+    public Person(String name, String phone) {
+        this.name = name;
+        this.phone = phone;
+    }
 
     abstract void receivesInput();
 
@@ -21,17 +25,16 @@ abstract class Person implements Presentsitelf {
         return string.toString();
     }
 
-
     public String getName() {
         return name;
     }
 
-    public String getPhone() {
-        return phone;
-    }
-
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getPhone() {
+        return phone;
     }
 
     public void setPhone(String phone) {
@@ -39,7 +42,7 @@ abstract class Person implements Presentsitelf {
     }
 
 
-//        SimpleDateFormat format1 = new SimpleDateFormat("MMMM dd, yyyy");
+    //        SimpleDateFormat format1 = new SimpleDateFormat("MMMM dd, yyyy");
 //        Date date = birthDate.getTime();
 //        string.append(format1.format(date));
 
