@@ -2,23 +2,20 @@ package br.com.turbowash;
 
 import java.util.Scanner;
 
-class Item implements Presentsitelf {
+class Item {
 
     private String name;
     private String price;
-    private int stock;
-
+    private boolean isActive;
 
     public Item() {
-        this.name = null;
-        this.price = null;
-        this.stock = 0;
+        this(null, null);
     }
 
     public Item(String name, String price) {
         this.name = name;
         this.price = price;
-        this.stock = 0;
+        this.isActive = true;
     }
 
     public void insertItem() {
@@ -29,20 +26,12 @@ class Item implements Presentsitelf {
 
         System.out.println("Entre com o preço do item");
         this.setPrice(scan.nextLine());
-
-        this.presentsItself();
-    }
-
-    @Override
-    public void presentsItself() {
-        System.out.println("ITEM \nNome: " + this.getName() +
-                ", \nPreço: " + this.getPrice());
     }
 
     @Override
     public String toString() {
-        return "\n'" + name + '\'' +
-                ", '" + price + '\'' + "\n" ;
+        return ("ITEM Nome: " + name +
+                ", Preço: " + price);
     }
 
     public String getName() {
@@ -61,11 +50,15 @@ class Item implements Presentsitelf {
         this.price = price;
     }
 
-    public int getStock() {
-        return stock;
+    public boolean isActive() {
+        return isActive;
     }
 
-    public void setStock(int stock) {
-        this.stock = stock;
+    public void setActive(boolean active) {
+        isActive = active;
+    }
+
+    public void deactivate() {
+        this.isActive = false;
     }
 }

@@ -6,7 +6,6 @@ public class PersonEmployee extends Person {
 
     private String id_ctrabalho;
 
-
     public PersonEmployee() {
         this(null,null,null);
     }
@@ -28,8 +27,6 @@ public class PersonEmployee extends Person {
 
         System.out.println("Entre com o CT");
         this.setId_ctrabalho(scan.nextLine());
-
-        this.presentsItself();
     }
 
     @Override
@@ -37,7 +34,6 @@ public class PersonEmployee extends Person {
         System.out.println("FUNCIONÁRIO \nNome: " + this.getName() +
                 ", \nTelefone: " + this.getPhone() + ", \nCT: " + this.getId_ctrabalho());
     }
-
 
     public String getId_ctrabalho() {
         return id_ctrabalho;

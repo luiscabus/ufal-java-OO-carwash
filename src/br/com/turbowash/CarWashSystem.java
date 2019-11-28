@@ -1,17 +1,15 @@
 package br.com.turbowash;
 
-import com.sun.tools.corba.se.idl.constExpr.Or;
-
 import java.util.ArrayList;
 import java.util.Scanner;
 
 class CarWashSystem {
 
-    static ArrayList<Person> lista_de_pessoas = new ArrayList<>();
-    private static ArrayList<ItemProduto> lista_de_produtos = new ArrayList<>();
-    private static ArrayList<ItemServico> lista_de_servicos = new ArrayList<>();
-    private static ArrayList<Vehicle> lista_de_veiculos = new ArrayList<>();
-    private static ArrayList<Order> lista_de_compras = new ArrayList<>();
+    static ArrayList<Person> personsArrayList = new ArrayList<>();
+    private static ArrayList<ItemProduto> productsArrayList = new ArrayList<>();
+    private static ArrayList<ItemServico> servicesArrayList = new ArrayList<>();
+    private static ArrayList<Vehicle> vehiclesArrayList = new ArrayList<>();
+    private static ArrayList<Order> ordersArrayList = new ArrayList<>();
     private Scanner scanner = new Scanner(System.in);
 
     void run() {
@@ -22,12 +20,14 @@ class CarWashSystem {
             System.out.println("1. Cadastros (pessoas, veículos, itens)");
             System.out.println("2. Movimento vendas (produtos, serviços)");
             System.out.println("3. Financeiro");
+            System.out.println("4. Cadastros Remoção (pessoas, veículos, itens)");
             System.out.println("999. Sair do sistema");
 
             escolha = scanner.nextLine();
             if (escolha.equals("1")) { menuCadastros(); }
             if (escolha.equals("2")) { menuMovimento(); }
             if (escolha.equals("3")) { menuFinanceiro(); }
+            if (escolha.equals("4")) { menuCadastrosRemocao(); }
         } while (!escolha.equals("999"));
     }
 
@@ -54,6 +54,57 @@ class CarWashSystem {
         } while (!escolha.equals("99"));
     }
 
+    private void menuCadastrosRemocao() {
+        String escolha;
+        do {
+            System.out.println();
+            System.out.println("## CarWash PDV - Menu de Remoção de Cadastros. ##");
+            System.out.println("  1. remover pessoa");
+            System.out.println("  2. remover serviço");
+            System.out.println("  3. remover produto");
+            System.out.println("  4. remover veículo");
+            System.out.println("  99. Voltar ao menu principal");
+
+            escolha = scanner.nextLine();
+            if (escolha.equals("1")) { removePerson(); }
+            if (escolha.equals("2")) { removeService(); }
+            if (escolha.equals("3")) { removeProduct(); }
+            if (escolha.equals("4")) { removeVehicle(); }
+        } while (!escolha.equals("99"));
+    }
+
+    private void removePerson() {
+        listPerson();
+        System.out.println("Indique a pessoa que será removida (desativada)");
+        String escolha = scanner.nextLine();
+        Person pessoa = personsArrayList.get(Integer.parseInt(escolha));
+        pessoa.deactivate();
+    }
+
+    private void removeService() {
+        listServices();
+        System.out.println("Indique o serviço que será removido (desativada)");
+        String escolha = scanner.nextLine();
+        ItemServico servico = servicesArrayList.get(Integer.parseInt(escolha));
+        servico.deactivate();
+    }
+
+    private void removeProduct() {
+        listProducts();
+        System.out.println("Indique o produto que será removido (desativada)");
+        String escolha = scanner.nextLine();
+        ItemProduto produto = productsArrayList.get(Integer.parseInt(escolha));
+        produto.deactivate();
+    }
+
+    private void removeVehicle() {
+        listVehicles();
+        System.out.println("Indique o veículo que será removido (desativada)");
+        String escolha = scanner.nextLine();
+        Vehicle veiculo = vehiclesArrayList.get(Integer.parseInt(escolha));
+        veiculo.deactivate();
+    }
+
     private void insertPerson() {
         System.out.println("  => Inserir Pessoa. Opções:");
         System.out.println("    1. inserir cliente");
@@ -65,25 +116,28 @@ class CarWashSystem {
         if (escolha.equals("1")) {
             PersonClient novo_cliente = new PersonClient();
             novo_cliente.receivesInput();
-            lista_de_pessoas.add(novo_cliente);
+            novo_cliente.presentsItself();
+            personsArrayList.add(novo_cliente);
         }
         if (escolha.equals("2")) {
             PersonSupplier novo_fornecedor = new PersonSupplier();
             novo_fornecedor.receivesInput();
-            lista_de_pessoas.add(novo_fornecedor);
+            novo_fornecedor.presentsItself();
+            personsArrayList.add(novo_fornecedor);
         }
         if (escolha.equals("3")) {
             PersonEmployee novo_empregado = new PersonEmployee();
             novo_empregado.receivesInput();
-            lista_de_pessoas.add(novo_empregado);
+            novo_empregado.presentsItself();
+            personsArrayList.add(novo_empregado);
         }
     }
 
     public static void listPerson() {
         System.out.println("---- Listagem de Pessoas cadastradas ----");
-        for (Person i: lista_de_pessoas
+        for (Person i: personsArrayList
         ) {
-            System.out.println("BD ID: " + lista_de_pessoas.indexOf(i));
+            System.out.println("BD ID: " + personsArrayList.indexOf(i));
             i.presentsItself();
             System.out.println();
         }
@@ -92,10 +146,10 @@ class CarWashSystem {
 
     public static void listClients() {
         System.out.println("---- Listagem de Pessoas cadastradas ----");
-        for (Person i: lista_de_pessoas
+        for (Person i: personsArrayList
         ) {
             if (i instanceof PersonClient ) {
-                System.out.println("BD ID: " + lista_de_pessoas.indexOf(i));
+                System.out.println("BD ID: " + personsArrayList.indexOf(i));
                 i.presentsItself();
                 System.out.println();
             }
@@ -113,22 +167,22 @@ class CarWashSystem {
         if (escolha.equals("1")) {
             ItemProduto novo_produto = new ItemProduto();
             novo_produto.insertItem();
-            lista_de_produtos.add((novo_produto));
+            productsArrayList.add((novo_produto));
         }
 
         if (escolha.equals("1")) {
             ItemServico novo_servico = new ItemServico();
             novo_servico.insertItem();
-            lista_de_servicos.add((novo_servico));
+            servicesArrayList.add((novo_servico));
         }
     }
 
     private void listProducts() {
         System.out.println("---- Listagem de Produtos cadastrados ----");
-        for (Item i: lista_de_produtos
+        for (Item i: productsArrayList
         ) {
-            System.out.println("BD ID: " + lista_de_produtos.indexOf(i));
-            i.presentsItself();
+            System.out.println("BD ID: " + productsArrayList.indexOf(i));
+            System.out.println(i.toString());
             System.out.println();
         }
         System.out.println("---");
@@ -136,10 +190,10 @@ class CarWashSystem {
 
     private void listServices() {
         System.out.println("---- Listagem de Serviços cadastrados ----");
-        for (Item i: lista_de_servicos
+        for (Item i: servicesArrayList
         ) {
-            System.out.println("BD ID: " + lista_de_servicos.indexOf(i));
-            i.presentsItself();
+            System.out.println("BD ID: " + servicesArrayList.indexOf(i));
+            System.out.println(i.toString());
             System.out.println();
         }
         System.out.println("---");
@@ -151,10 +205,10 @@ class CarWashSystem {
     }
 
     private void insertVehicle() {
-        if (!lista_de_pessoas.isEmpty()) {
+        if (!personsArrayList.isEmpty()) {
             Vehicle novo_veiculo = new Vehicle();
             novo_veiculo.receivesInput();
-            lista_de_veiculos.add(novo_veiculo);
+            vehiclesArrayList.add(novo_veiculo);
         } else {
             System.out.println("Você precisa cadastrar clientes primeiro.");
         }
@@ -163,9 +217,9 @@ class CarWashSystem {
 
     private void listVehicles() {
         System.out.println("---- Listagem de Veículos ----");
-        for (Vehicle i: lista_de_veiculos
+        for (Vehicle i: vehiclesArrayList
         ) {
-            System.out.println("BD ID: " + lista_de_veiculos.indexOf(i));
+            System.out.println("BD ID: " + vehiclesArrayList.indexOf(i));
             System.out.println(i.toString());
         }
         System.out.println("---");
@@ -190,18 +244,18 @@ class CarWashSystem {
     }
 
     private void sellProduct() {
-        if (!lista_de_pessoas.isEmpty() && !lista_de_produtos.isEmpty() && !lista_de_veiculos.isEmpty()) {
+        if (!personsArrayList.isEmpty() && !productsArrayList.isEmpty() && !vehiclesArrayList.isEmpty()) {
 
             listClients();
             System.out.println("Indique o cliente (ID)");
-            PersonClient cliente = (PersonClient) lista_de_pessoas.get(Integer.parseInt(scanner.nextLine()));
+            PersonClient cliente = (PersonClient) personsArrayList.get(Integer.parseInt(scanner.nextLine()));
 
             listVehicles();
             System.out.println("Indique o veículo (ID)");
-            Vehicle veiculo = lista_de_veiculos.get(Integer.parseInt(scanner.nextLine()));
+            Vehicle veiculo = vehiclesArrayList.get(Integer.parseInt(scanner.nextLine()));
 
             Order order = new Order(cliente, veiculo);
-            lista_de_compras.add(order);
+            ordersArrayList.add(order);
 
             String escolha;
             do {
@@ -212,7 +266,7 @@ class CarWashSystem {
                 if (escolha.equals("99"))
                     break;
 
-                ItemProduto produto = lista_de_produtos.get(Integer.parseInt(escolha));
+                ItemProduto produto = productsArrayList.get(Integer.parseInt(escolha));
 
                 System.out.println("Indique a quantidade");
                 escolha = scanner.nextLine();
@@ -228,14 +282,14 @@ class CarWashSystem {
     }
 
     private void sellService() {
-        if (!lista_de_veiculos.isEmpty() && !lista_de_servicos.isEmpty()) {
+        if (!vehiclesArrayList.isEmpty() && !servicesArrayList.isEmpty()) {
 
             listVehicles();
             System.out.println("Indique o veículo (ID)");
-            Vehicle veiculo = lista_de_veiculos.get(Integer.parseInt(scanner.nextLine()));
+            Vehicle veiculo = vehiclesArrayList.get(Integer.parseInt(scanner.nextLine()));
 
             Order order = new Order(veiculo.getOwner(), veiculo);
-            lista_de_compras.add(order);
+            ordersArrayList.add(order);
 
             String escolha;
             do {
@@ -246,7 +300,7 @@ class CarWashSystem {
                 if (escolha.equals("99"))
                     break;
 
-                ItemServico servico = lista_de_servicos.get(Integer.parseInt(escolha));
+                ItemServico servico = servicesArrayList.get(Integer.parseInt(escolha));
                 order.addItem(servico);
 
             } while (!escolha.equals("99"));
@@ -257,13 +311,14 @@ class CarWashSystem {
     }
 
     private void listSales() {
-        if (lista_de_compras.isEmpty()) {
+        if (ordersArrayList.isEmpty()) {
             System.out.println("Nenhum movimento de vendas.");
         } else {
             System.out.println("---- Listagem de vendas ----");
-            for (Order i: lista_de_compras) {
-                System.out.println("VENDA ID(" + lista_de_compras.indexOf(i) + ")");
+            for (Order i: ordersArrayList) {
+                System.out.println("VENDA ID(" + ordersArrayList.indexOf(i) + ")");
                 System.out.println(i.toString());
+                System.out.println();
             }
             System.out.println("----");
         }
@@ -279,45 +334,45 @@ class CarWashSystem {
 //        lista_de_produtos;
 //        lista_de_servicos;
 //        lista_de_compras;
-        PersonClient cliente = new PersonClient("Luis", "82", "051");
-        lista_de_pessoas.add(cliente);
-        cliente = new PersonClient("Jose", "83", "132");
-        lista_de_pessoas.add(cliente);
-        cliente = new PersonClient("Maria", "84", "866");
-        lista_de_pessoas.add(cliente);
+        PersonClient cliente1 = new PersonClient("Luis", "82", "051");
+        personsArrayList.add(cliente1);
+        PersonClient cliente2 = new PersonClient("Jose", "83", "132");
+        personsArrayList.add(cliente2);
+        PersonClient cliente3 = new PersonClient("Maria", "84", "866");
+        personsArrayList.add(cliente3);
 
         PersonSupplier fornecedor = new PersonSupplier("RED", "82", "123-55");
-        lista_de_pessoas.add(fornecedor);
+        personsArrayList.add(fornecedor);
         fornecedor = new PersonSupplier("PARTSco", "81", "333/0001-10");
-        lista_de_pessoas.add(fornecedor);
+        personsArrayList.add(fornecedor);
         fornecedor = new PersonSupplier("BMW", "87", "201/0001-45");
-        lista_de_pessoas.add(fornecedor);
+        personsArrayList.add(fornecedor);
 
         PersonEmployee empregado = new PersonEmployee("Manoel", "81", "333");
-        lista_de_pessoas.add(empregado);
+        personsArrayList.add(empregado);
         empregado = new PersonEmployee("Joca", "91", "121");
-        lista_de_pessoas.add(empregado);
+        personsArrayList.add(empregado);
         empregado = new PersonEmployee("Rubya", "74", "765");
-        lista_de_pessoas.add(empregado);
+        personsArrayList.add(empregado);
 
-        Vehicle veiculo = new Vehicle(cliente, "MUV-8874", "BMV", "320i");
-        lista_de_veiculos.add(veiculo);
-        veiculo = new Vehicle(cliente, "QLE-0101", "GM", "Corsa");
-        lista_de_veiculos.add(veiculo);
-        veiculo = new Vehicle(cliente, "ABC-9999", "CADDY", "Taurus");
-        lista_de_veiculos.add(veiculo);
+        Vehicle veiculo = new Vehicle(cliente1, "MUV-8874", "BMV", "320i");
+        vehiclesArrayList.add(veiculo);
+        veiculo = new Vehicle(cliente2, "QLE-0101", "GM", "Corsa");
+        vehiclesArrayList.add(veiculo);
+        veiculo = new Vehicle(cliente3, "ABC-9999", "CADDY", "Taurus");
+        vehiclesArrayList.add(veiculo);
 
         ItemProduto produto = new ItemProduto("Pneu", "22.30");
-        lista_de_produtos.add(produto);
+        productsArrayList.add(produto);
         produto = new ItemProduto("Janela", "14.00");
-        lista_de_produtos.add(produto);
+        productsArrayList.add(produto);
         produto = new ItemProduto("Rodas", "333.50");
-        lista_de_produtos.add(produto);
+        productsArrayList.add(produto);
 
         ItemServico servico = new ItemServico("Lavagem Simples", "40.00");
-        lista_de_servicos.add(servico);
+        servicesArrayList.add(servico);
         servico = new ItemServico("Lavagem Completa", "60.00");
-        lista_de_servicos.add(servico);
+        servicesArrayList.add(servico);
 
 
 

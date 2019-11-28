@@ -6,10 +6,8 @@ public class PersonSupplier extends Person {
 
     private String id_cnpj;
 
-
     public PersonSupplier() {
-        super();
-        this.id_cnpj = null;
+        this(null, null, null);
     }
 
     public PersonSupplier(String name, String phone, String id_cnpj) {
@@ -29,8 +27,6 @@ public class PersonSupplier extends Person {
 
         System.out.println("Entre com o CNPJ");
         this.setId_cnpj(scan.nextLine());
-
-        this.presentsItself();
     }
 
     @Override
@@ -38,7 +34,6 @@ public class PersonSupplier extends Person {
         System.out.println("FORNECEDOR \nNome: " + this.getName() +
                 ", \nTelefone: " + this.getPhone() + ", \nCNPJ: " + this.getId_cnpj());
     }
-
 
     public String getId_cnpj() {
         return id_cnpj;

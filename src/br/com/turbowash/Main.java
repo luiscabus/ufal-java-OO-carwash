@@ -8,6 +8,9 @@ public class Main {
         programa.addManyStuff();
         programa.run();
 
+//        PersonClient cliente = new PersonClient("José", "82", "051");
+//        System.out.println(cliente.isActive());
+
     }
 
 }

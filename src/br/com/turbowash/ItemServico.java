@@ -3,7 +3,7 @@ package br.com.turbowash;
 public class ItemServico extends Item{
 
     public ItemServico() {
-        super();
+        this(null, null);
     }
 
     public ItemServico(String name, String price) {

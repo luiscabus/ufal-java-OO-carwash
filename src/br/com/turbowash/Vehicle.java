@@ -7,6 +7,7 @@ public class Vehicle {
     private String placa;
     private String marca;
     private String modelo;
+    private boolean isActive;
 
     public Vehicle() {
         /* Calling the principal constructor
@@ -21,6 +22,7 @@ public class Vehicle {
         this.placa = placa;
         this.marca = marca;
         this.modelo = modelo;
+        this.isActive = true;
     }
 
     public void receivesInput() {
@@ -31,9 +33,9 @@ public class Vehicle {
             CarWashSystem.listClients();
 
             int ownerId = Integer.parseInt(scan.nextLine());
-            if (CarWashSystem.lista_de_pessoas.get(ownerId) instanceof PersonClient) {
+            if (CarWashSystem.personsArrayList.get(ownerId) instanceof PersonClient) {
 
-                PersonClient dono = (PersonClient) CarWashSystem.lista_de_pessoas.get(ownerId);
+                PersonClient dono = (PersonClient) CarWashSystem.personsArrayList.get(ownerId);
                 this.setOwner(dono);
 
                 System.out.println("Entre com a Placa");
@@ -63,6 +65,7 @@ public class Vehicle {
                 ", placa='" + placa + '\'' +
                 ", marca='" + marca + '\'' +
                 ", modelo='" + modelo + '\'' +
+                ", status='" + isActive + '\'' +
                 '}';
     }
 
@@ -96,5 +99,9 @@ public class Vehicle {
 
     public void setModelo(String modelo) {
         this.modelo = modelo;
+    }
+
+    public void deactivate() {
+        this.isActive = false;
     }
 }
