@@ -30,45 +30,45 @@ Os lançamentos financeiros podem compreender as receitas das vendas, despesas d
 
 
 ### #Funcionalidade - Título / Breve Descrição 
-1. Adição de Produtos (item) 
-Um novo ITEM é adicionado ao sistema, e pode ser do tipo Produto ou Serviço. Item: id/referência, nome, unidade, preço de venda. Produto: estoque.
+1. Adição de Itens 
+Um novo ITEM é adicionado ao sistema, pode ser do tipo Produto ou Serviço. Item: nome, preço de venda. Produto: estoque.
 
-2. Remoção de um item
+2. Remoção de um Item
 A remoção de um item só é possível se ele não constar em nenhum movimento.
 
-3. Adição de uma pessoa 
-Uma nova PESSOA é adicionada ao sistema. Pode ser do tipo Física ou Jurídica (CPF/CNPJ, Nome/Razão Social). Pode ser do tipo Fornecedor, Empregado ou Cliente. Pessoa: id, ddd, telefone, status. Empregado: cargo, salário mensal.
+3. Adição de uma Pessoa 
+Uma nova PESSOA é adicionada ao sistema. Pode ser do tipo Cliente (CPF), Fornecedor (CNPJ) ou Empregado (CT). 
 
-4. Remoção de uma pessoa 
-A remoção de pessoa apenas coloca seu status como inativo.
+4. Remoção de uma Pessoa 
+A remoção de pessoa coloca seu status como inativo.
 
 5. Adição de um Veículo
-Uma novo veículo é adicionada ao sistema, possui: id/placa, marca, modelo. A placa é única.
+Uma novo veículo é adicionada ao sistema, possui: placa, marca, modelo.
 
-6. Remoção de um veículo 
-Só é possível se não constar em nenhum movimento.
+6. Remoção de um Veículo 
+A remoção de veículo coloca seu status como inativo.
 
-7. Lançar novo movimento
-O lançamento de movimento permite lançar uma venda de serviços ou produtos a um Cliente, relacionado a uma placa de Veículo, feita por um Funcionário, em um determinado dia.
+7. Lançar novo Movimento
+O lançamento de movimento permite: lançar uma venda de produtos a um Cliente OU lançar uma venda de serviços a um Veículo.
 
-8. Editar movimento
-A edição de movimento permite adicionar novos serviços/produtos, remover, modificar o Cliente ou a Placa do Veículo.
+8. Editar Movimento
+A edição de movimento permite adicionar ou remover produtos/serviços de uma venda.
 
-9. Listagem dos Produtos
+9. Listagem dos Produtos e Serviços
+
 10. Listagem das Pessoas
+
 11. Listagem dos Veículos
 
-12. Exibir movimento do dia
-Mostra uma lista de movimentos e pode ser selecionado um dia específico.
+12. Exibir movimento
+Mostra uma lista do movimento do sistema.
 
 13. Novo lançamento financeiro
-O lançamento possui: Conta Origem, Conta Destino, Nome do Título, Data do movimento, mês de competência, valor.
+O lançamento possui: Data, Título, Conta Origem, Conta Destino e valor.
 
 14. Excluir lançamento financeiro
-Mostra os últimos movimentos que podem ser excluídos
+Mostra os últimos movimentos que podem ser excluídos e exclui um movimento.
 
-15. Clear
-Limpa o terminal
 
 
 .
